@@ -40,7 +40,7 @@ final class DeckDismissingAnimationController: NSObject, UIViewControllerAnimate
             x: presentingViewController.view.frame.origin.x,
             y: presentingViewController.view.frame.origin.y,
             width: presentingViewController.view.frame.width,
-            height: Constants.cornerRadius)
+            height: DeckConstants.cornerRadius)
         roundedViewForPresentingView.frame = initialFrameForRoundedPresentingView
         
         let finalFrameForPresentingView = transitionContext.finalFrame(for: presentingViewController)
@@ -48,7 +48,7 @@ final class DeckDismissingAnimationController: NSObject, UIViewControllerAnimate
             x: finalFrameForPresentingView.origin.x,
             y: finalFrameForPresentingView.origin.y,
             width: finalFrameForPresentingView.width,
-            height: Constants.cornerRadius)
+            height: DeckConstants.cornerRadius)
         
         let offScreenFrame = CGRect(x: 0, y: containerView.bounds.height, width: containerView.bounds.width, height: containerView.bounds.height)
       
@@ -72,7 +72,7 @@ final class DeckDismissingAnimationController: NSObject, UIViewControllerAnimate
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return duration ?? Constants.defaultAnimationDuration
+        return duration ?? DeckConstants.defaultAnimationDuration
     }
 	
 }

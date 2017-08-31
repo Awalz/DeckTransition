@@ -50,7 +50,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
 	
     override var frameOfPresentedViewInContainerView: CGRect {
         if let view = containerView {
-            return CGRect(x: 0, y: Constants.topOffsetForPresentedView, width: view.bounds.width, height: view.bounds.height - Constants.topOffsetForPresentedView)
+            return CGRect(x: 0, y: DeckConstants.topOffsetForPresentedView, width: view.bounds.width, height: view.bounds.height - DeckConstants.topOffsetForPresentedView)
         } else {
             return .zero
         }
@@ -99,7 +99,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
 				presentingViewSnapshotView!.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
 				presentingViewSnapshotView!.heightAnchor.constraint(
                     equalTo: containerView.heightAnchor,
-                    constant: Constants.topInsetForPresentingView * -2),
+                    constant: DeckConstants.topInsetForPresentingView * -2),
 			])
 			
 			updateSnapshotView()
@@ -112,7 +112,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
                 roundedViewForPresentingView!.topAnchor.constraint(equalTo: presentingViewSnapshotView!.topAnchor),
                 roundedViewForPresentingView!.leftAnchor.constraint(equalTo: presentingViewSnapshotView!.leftAnchor),
                 roundedViewForPresentingView!.rightAnchor.constraint(equalTo: presentingViewSnapshotView!.rightAnchor),
-                roundedViewForPresentingView!.heightAnchor.constraint(equalToConstant: Constants.cornerRadius)
+                roundedViewForPresentingView!.heightAnchor.constraint(equalToConstant: DeckConstants.cornerRadius)
             ])
 			
 			backgroundView = UIView()
@@ -209,7 +209,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
 			animations: {
 				containerView.frame.origin.y -= newHeight - currentHeight
 			}, completion: { [weak self] _ in
-				self?.presentingViewController.view.alpha = Constants.alphaForPresentingView
+				self?.presentingViewController.view.alpha = DeckConstants.alphaForPresentingView
 				containerView.frame = CGRect(x: 0, y: statusBarHeight, width: containerView.frame.width, height: newHeight)
 			}
 		)
@@ -283,7 +283,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
 			return
 		}
 		
-		roundedView.frame = CGRect(x: 0, y: offset, width: containerView!.bounds.width, height: Constants.cornerRadius)
+		roundedView.frame = CGRect(x: 0, y: offset, width: containerView!.bounds.width, height: DeckConstants.cornerRadius)
 	}
 	
 	// MARK:- Dismissal
@@ -295,7 +295,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
 	/// restores the state of the `presentingViewController`'s view to the
 	/// expected state at the end of the presenting animation
 	override func dismissalTransitionWillBegin() {
-		let scale: CGFloat = 1 - (Constants.topInsetForPresentingView * 2 / presentingViewController.view.frame.height)
+		let scale: CGFloat = 1 - (DeckConstants.topInsetForPresentingView * 2 / presentingViewController.view.frame.height)
 		presentingViewController.view.transform = CGAffineTransform(scaleX: scale, y: scale)
 		backgroundView?.removeFromSuperview()
         presentingViewSnapshotView?.removeFromSuperview()

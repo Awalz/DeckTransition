@@ -12,7 +12,7 @@ final class RoundedView: UIView {
     
     // MARK:- Public variables
     
-    public var cornerRadius = Constants.cornerRadius {
+    public var cornerRadius = DeckConstants.cornerRadius {
         didSet {
             updateMaskPath()
         }

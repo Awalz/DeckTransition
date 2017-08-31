@@ -32,7 +32,7 @@ final class DeckPresentingAnimationController: NSObject, UIViewControllerAnimate
         
         let containerView = transitionContext.containerView
         
-        let scale: CGFloat = 1 - (Constants.topInsetForPresentingView * 2 / presentingViewController.view.frame.height)
+        let scale: CGFloat = 1 - (DeckConstants.topInsetForPresentingView * 2 / presentingViewController.view.frame.height)
         
         let roundedViewForPresentingView = RoundedView()
         roundedViewForPresentingView.cornerRadius = 0
@@ -43,7 +43,7 @@ final class DeckPresentingAnimationController: NSObject, UIViewControllerAnimate
             x: presentingViewController.view.frame.origin.x,
             y: presentingViewController.view.frame.origin.y,
             width: presentingViewController.view.frame.width,
-            height: Constants.cornerRadius)
+            height: DeckConstants.cornerRadius)
         roundedViewForPresentingView.frame = initialFrameForRoundedPresentingView
         
         let finalFrameForPresentingView = presentingViewController.view.frame.applying(
@@ -58,21 +58,21 @@ final class DeckPresentingAnimationController: NSObject, UIViewControllerAnimate
             x: finalFrameForPresentingView.origin.x,
             y: finalFrameForPresentingView.origin.y,
             width: finalFrameForPresentingView.width,
-            height: Constants.cornerRadius)
+            height: DeckConstants.cornerRadius)
         
         containerView.addSubview(presentedViewController.view)
         presentedViewController.view.frame = CGRect(x: 0, y: containerView.bounds.height, width: containerView.bounds.width, height: containerView.bounds.height)
         
         let roundedViewForPresentedView = RoundedView()
         containerView.addSubview(roundedViewForPresentedView)
-        roundedViewForPresentedView.frame = CGRect(x: 0, y: containerView.bounds.height, width: containerView.bounds.width, height: Constants.cornerRadius)
+        roundedViewForPresentedView.frame = CGRect(x: 0, y: containerView.bounds.height, width: containerView.bounds.width, height: DeckConstants.cornerRadius)
         
         let finalFrameForPresentedView = transitionContext.finalFrame(for: presentedViewController)
         let finalFrameForRoundedViewForPresentedView = CGRect(
             x: finalFrameForPresentedView.origin.x,
             y: finalFrameForPresentedView.origin.y,
             width: finalFrameForPresentedView.width,
-            height: Constants.cornerRadius)
+            height: DeckConstants.cornerRadius)
         
         UIView.animate(
             withDuration: transitionDuration(using: transitionContext),
@@ -80,9 +80,9 @@ final class DeckPresentingAnimationController: NSObject, UIViewControllerAnimate
             options: .curveEaseOut,
             animations: { [weak self] in
                 presentingViewController.view.transform = CGAffineTransform(scaleX: scale, y: scale)
-                presentingViewController.view.alpha = Constants.alphaForPresentingView
+                presentingViewController.view.alpha = DeckConstants.alphaForPresentingView
                 
-                roundedViewForPresentingView.cornerRadius = Constants.cornerRadius
+                roundedViewForPresentingView.cornerRadius = DeckConstants.cornerRadius
                 roundedViewForPresentingView.frame = finalFrameForRoundedViewForPresentingView
 				
                 presentedViewController.view.frame = finalFrameForPresentedView
@@ -99,7 +99,7 @@ final class DeckPresentingAnimationController: NSObject, UIViewControllerAnimate
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return duration ?? Constants.defaultAnimationDuration
+        return duration ?? DeckConstants.defaultAnimationDuration
     }
     
 }
